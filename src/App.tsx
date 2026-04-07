@@ -47,6 +47,22 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (gameStatus !== 'playing') return;
+
+    const handlePhysicalKeyPress = (event: KeyboardEvent) => {
+      const letter = event.key.toLowerCase();
+
+      if (/^[a-zñ]$/.test(letter)) {
+        event.preventDefault();
+        handleGuess(letter);
+      }
+    };
+
+    window.addEventListener('keydown', handlePhysicalKeyPress);
+    return () => window.removeEventListener('keydown', handlePhysicalKeyPress);
+  }, [gameStatus, guessedLetters, currentWord, wrongGuesses]);
+
+  useEffect(() => {
     if (!currentWord) return;
 
     const word = currentWord.word.toLowerCase();

@@ -13,6 +13,7 @@ const SPANISH_LETTERS = [
 export default function Keyboard({ onGuess, guessedLetters, disabled }: KeyboardProps) {
   return (
     <div className="flex flex-col gap-2 items-center">
+      <p className="text-sm text-gray-500 mb-2">Use keyboard or click buttons to guess</p>
       {SPANISH_LETTERS.map((row, i) => (
         <div key={i} className="flex gap-1">
           {row.map(letter => {
